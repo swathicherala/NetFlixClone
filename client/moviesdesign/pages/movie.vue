@@ -59,17 +59,48 @@
           lg3
 
         >
-        <div>
-          <v-card class="mx-auto data" width="100%" height="100%" hover>
+        <div class="data">
+          <v-card class="mx-auto carddata" width="100%" height="100%" hover>
             <img :src="article.image" class="image" />
             <v-card-title>
               
                 <div class="headline">{{ article.moviename }}</div>
+                <v-rating
+          v-model="rating"
+          color="yellow darken-3"
+          background-color="grey darken-1"
+          empty-icon="$ratingFull"
+          half-increments
+          hover
+          small
+          class="rate"
+        ></v-rating>
             
             </v-card-title>
-            <v-card-subtitle style="margin-top:10px;">Price:{{ article.price }}</v-card-subtitle>
+            <!-- <v-card-subtitle style="margin-top:10px;">Price:{{ article.price }}</v-card-subtitle>
             <v-card-text h-100>Release Date:{{formatDate( article.dateofrelease)}}
-            </v-card-text>
+            </v-card-text> -->
+       <div class="mt-1">
+        <v-bottom-navigation   
+      class="socialicons"
+    > 
+
+      <v-btn @click="wishList" value="favorites">
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
+        <v-btn
+        color="red accent-4"
+        text
+      >
+        <!-- <span>Favorites</span> -->
+
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+      <v-btn value="favorites">
+      <v-icon>mdi-share-variant</v-icon>
+    </v-btn>
+      </v-bottom-navigation>
+      </div>
             <v-card-actions>
              
               <!-- <v-btn class="btnmore">Get More Info</v-btn> -->
@@ -123,6 +154,16 @@ export default {
           this.searchedMovies=result.data
           console.log(this.searchedMovies)
     },
+    async wishList(){
+       console.log("Hello",this.articles);
+
+       localStorage.setItem('wishlist',JSON.stringify(this.articles))
+              for (let i = 0; i < localStorage.length; i++) {
+  console.log(localStorage.getItem(localStorage.key(i)));
+}
+
+    },
+
     clearSearch(){
       this.searchInput=''
       this.searchedMovies=[]
@@ -162,10 +203,20 @@ h1 span{
 .stream-head{
   font-size:50px;
 }
+/* .data{
+   -webkit-transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
+}
+.data:hover{
+ -webkit-transform: scale(1.8) rotate(0.01deg);
+        transform: scale(1.8) rotate(0.01deg);
+} */
 .image{
   width:30vh;
   height: 30vh;
+ 
 }
+
 .flexdiv{
   overflow: auto;
 }
@@ -178,15 +229,12 @@ margin:0;
 }
 .btnmore{
   border:2px solid orangered;
-  width:80%;
-  border-radius: 5px;
-  color:white;
+  width:100%;
+  color:black;
   text-decoration: none;
 }
 .btnmore:hover{
 background-color: orangered;
-border:2px solid black;
-
 }
 .search{
   width:19%;
@@ -201,4 +249,42 @@ border:2px solid black;
   padding:12px;
   font-size:12px;
 }
+.data{
+  position: relative;
+  overflow: hidden;
+  transition:1s;
+}
+.data:hover{
+  transform:scale(1.1)
+}
+/* .abcd{
+  display: none;
+} */
+.socialicons{
+  position:absolute;
+  top:-100%;
+  left:0;
+  width:100%;
+  height: 900px;
+  background:rgba(0,0,0,0.8);
+  transition: all 0.5s;
+  /* display: none; */
+  /* bottom: 2px solid red; */
+}
+/* v-card:hover + .socialicons{
+  position:absolute;
+  display: block;
+  bottom: 2px solid red;
+} */
+.data:hover .socialicons{
+  top:0;
+}
+.carddata{
+  background-color: white;
+  color:black;
+}
+.rate{
+  font-size:20px;
+}
+
 </style>

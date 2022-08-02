@@ -45,17 +45,19 @@
            </div>
             </div>
 
-           <div class="col-md-8">
+           <div class="col-md-8 movieinfo">
                <div>
-                <div class="headline">{{ movies.moviename }}</div>
+                <div class="headline" style="text-decoration:underline">{{ movies.moviename }}</div>
          </div>
          <div>
-            <div class="price">Price:{{ movies.price }}</div>
+            <div class="price"><span>Price:</span>{{ movies.price }}</div>
          </div>
          <div>
-            <div class="release-date">Release Date:{{formatDate( movies.dateofrelease)}}</div>
+            <div class="release-date"><span>Release Date:</span>{{formatDate( movies.dateofrelease)}}</div>
          </div>
-
+         <div>
+            <div class="price"><span>Description:</span>{{ movies.description }}</div>
+         </div>
            </div>
            </div>
         </div>
@@ -91,6 +93,8 @@ export default{
 </script>
 
 <style scoped>
-
+.movieinfo span{
+  text-decoration: underline;
+}
 
 </style>

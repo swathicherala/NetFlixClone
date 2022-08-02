@@ -23,7 +23,7 @@
       <button type="submit" class="btn btn-primary w-100">login</button>
     </form> -->
      <div class="signin">
-      <div v-if="loginData.error" role="alert" class="red">
+      <div v-if="loginData.error" role="alert" class="loginerror">
         {{loginData.error}}
       </div>
         <v-form  
@@ -133,5 +133,8 @@ export default {
 }
 .signuplink:hover{
     text-decoration: underline;
+}
+.loginerror{
+  color:red;
 }
 </style>

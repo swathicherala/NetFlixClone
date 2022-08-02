@@ -30,26 +30,30 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
+      <!-- <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
+      </v-btn> -->
+      <!-- <v-btn
         icon
         @click.stop="clipped = !clipped"
       >
         <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
+      </v-btn> -->
+      <!-- <v-btn
         icon
         @click.stop="fixed = !fixed"
       >
         <v-icon>mdi-minus</v-icon>
-      </v-btn>
-       <div v-if="$auth.loggedIn">
-         <span style="color:red">{{$auth.user.email}}</span>
+      </v-btn> -->
+       <div v-if="$auth.loggedIn" style="display:flex;">
+        <h1 style="color:red">MovieWatch</h1>
+         <div  style="margin-left:700px;">
+          <span style="padding-right:10px">{{$auth.user.email}}</span>
+          <v-btn @click="logout" color="red">Logout</v-btn>
+         </div>
         </div>
         <div v-else>
           <v-btn text to="/auth/login">Login</v-btn>
@@ -57,13 +61,12 @@
         </div>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-     <v-btn @click="logout" color="red">Logout</v-btn>
-      <v-btn
+      <!-- <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
     <v-main>
       <v-container>
@@ -111,11 +114,6 @@ export default {
           icon: 'mdi-apps',
           title: 'Home',
           to: '/home'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'signin',
-          to: '/auth/login'
         },
         {
           icon: 'mdi-chart-bubble',
