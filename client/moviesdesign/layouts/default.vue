@@ -120,6 +120,11 @@ export default {
           title: 'movie',
           to: '/movie'
         }, 
+         {
+          icon: 'mdi-chart-bubble',
+          title: 'wishlist',
+          to: '/wishlist'
+        }, 
       ],
       miniVariant: false,
       right: true,

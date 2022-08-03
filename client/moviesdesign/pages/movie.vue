@@ -85,8 +85,15 @@
       class="socialicons"
     > 
 
-      <v-btn @click="wishList" value="favorites">
-      <v-icon>mdi-plus</v-icon>
+      <v-btn @click="wishList(article._id)" value="favorites">
+      <!-- <v-icon>
+         <NuxtLink :to="{ name: 'wishlist', params: { wishlistid: article._id }}" class="btnmore"> mdi-plus</NuxtLink>
+              <v-spacer />
+        </v-icon> -->
+         <v-icon>
+         mdi-plus
+              <v-spacer />
+        </v-icon>
     </v-btn>
         <v-btn
         color="red accent-4"
@@ -129,6 +136,7 @@ export default {
       dateofrelease: "",
       searchInput:"",
       searchedMovies:[],
+      // movieslist:[]
     };
   },
   async fetch(){
@@ -154,14 +162,17 @@ export default {
           this.searchedMovies=result.data
           console.log(this.searchedMovies)
     },
-    async wishList(){
-       console.log("Hello",this.articles);
-
-       localStorage.setItem('wishlist',JSON.stringify(this.articles))
-              for (let i = 0; i < localStorage.length; i++) {
-  console.log(localStorage.getItem(localStorage.key(i)));
-}
-
+    async wishList(id){
+       console.log("Hello",id);
+        //  this.movieslist=localStorage.setItem('wishlist',id)
+        //  this.movieslist.append(this.articles)
+       localStorage.setItem('wishlist',id)
+//               for (let i = 0; i < localStorage.length; i++) {
+//   console.log(localStorage.getItem(localStorage.key(i)));
+// }
+    //   const data = await axios.get("http://localhost:3000");
+    // // console.log(data);
+    // this.articles = data.data;
     },
 
     clearSearch(){
@@ -279,10 +290,7 @@ background-color: orangered;
 .data:hover .socialicons{
   top:0;
 }
-.carddata{
-  background-color: white;
-  color:black;
-}
+
 .rate{
   font-size:20px;
 }
